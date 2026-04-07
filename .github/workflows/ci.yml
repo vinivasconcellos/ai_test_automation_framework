@@ -11,38 +11,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    - name: Run AI Test Case Generation
-      run: |
-        python -m ai.testcase_generator
+      - name: Run AI Test Case Generation
+        run: |
+          python -m ai.testcase_generator
 
-    - name: Run AI Failure Analysis
-      run: |
-        python -m ai.failure_analysis
+      - name: Run AI Failure Analysis
+        run: |
+          python -m ai.failure_analysis
 
-    - name: Run Pytest
-      run: |
-        pytest
+      - name: Run Pytest
+        run: |
+          pytest
 
-            - name: Save output
-      run: |
-        mkdir reports
-        echo "Pipeline executed successfully" > reports/result.txt
+      - name: Save output
+        run: |
+          mkdir reports
+          echo "Pipeline executed successfully" > reports/result.txt
 
-    - name: Upload report
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-report
-        path: reports/
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: reports/
